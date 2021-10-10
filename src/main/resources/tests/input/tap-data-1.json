@@ -1,0 +1,22 @@
+{
+	"taps": [
+		{
+			"id": 1,
+			"datetimeUTC": "22-01-2021 13:00:00",
+			"tapType": "ON",
+			"stopId": "Stop1",
+			"companyId": "Company1",
+			"busId": "Bus37",
+			"primaryAccountNumber": "5500005555555559"
+		},
+		{
+			"id": 2,
+			"datetimeUTC": "22-01-2021 13:05:00",
+			"tapType": "OFF",
+			"stopId": "Stop2",
+			"companyId": "Company1",
+			"busId": "Bus37",
+			"primaryAccountNumber": "5500005555555559"
+		}
+	]
+}
