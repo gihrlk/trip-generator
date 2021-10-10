@@ -35,24 +35,6 @@
 			"companyId": "Company1",
 			"busId": "Bus37",
 			"primaryAccountNumber": "5500005555555559"
-		},
-		{
-			"id": 5,
-			"datetimeUTC": "22-01-2021 13:18:00",
-			"tapType": "ON",
-			"stopId": "Stop3",
-			"companyId": "Company1",
-			"busId": "Bus37",
-			"primaryAccountNumber": "5500005555555559"
-		},
-		{
-			"id": 6,
-			"datetimeUTC": "22-01-2021 13:18:30",
-			"tapType": "OFF",
-			"stopId": "Stop3",
-			"companyId": "Company1",
-			"busId": "Bus37",
-			"primaryAccountNumber": "5500005555555559"
 		}
 	]
 }

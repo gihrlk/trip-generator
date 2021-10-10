@@ -8,7 +8,8 @@ Trip Generator Coding Challenge for Littlepay
 4. Customers must always tap OFF before they could tap ON again. Input data will only have one tap ON without the tap OFF for given Primary Account Number.
 5. Customer's corresponding tap ON and tap OFF entries will always have the same CompanyId and BusId. If tap OFF's CompanyId and BusId are different from the tap ON's CompanyId and BusId, the tap OFF will be ignored.
 6. CompanyId and BusId are only used when finding the corresponding tap OFF entry.
-7. Internationalization is not supported.
+7. For INCOMPLETE trips, the finished time, duration and toStopId will be null.
+8. Internationalization is not supported.
 
 ### How to run the application
 Application code is available at [GitHub repository](https://github.com/gihrlk/trip-generator)
@@ -40,10 +41,12 @@ Description of each test data set is below.
 ##### tap-data-1.json
 Input file contains a single journey. This will generate a COMPLETED trip.
 ##### tap-data-2.json
-Input file contains multiple journeys of the same customer. This will generate two COMPLETED trips.
+Input file contains a single journey. But the CompanyId and BusId are different. Therefore, an INCOMPLETE trip will be generated.
 ##### tap-data-3.json
-Input file contains multiple journeys of the same customer. This will generate two COMPLETED trips and one CANCELLED trip.
+Input file contains multiple journeys of the same customer. This will generate two COMPLETED trips.
 ##### tap-data-4.json
-Input file contains multiple journeys of the same customer. This will generate two COMPLETED trips, one CANCELLED trip and one INCOMPLETE trip.
+Input file contains multiple journeys of the same customer. This will generate two COMPLETED trips and one CANCELLED trip.
 ##### tap-data-5.json
+Input file contains multiple journeys of the same customer. This will generate two COMPLETED trips, one CANCELLED trip and one INCOMPLETE trip.
+##### tap-data-6.json
 Input file contains multiple journeys of multiple customers. This will generate five COMPLETED trips, two CANCELLED trips and two INCOMPLETE trips.

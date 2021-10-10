@@ -52,6 +52,9 @@ public class TripGeneratorServiceTest {
 				"Bus19", "4462030000000000"));
 	}
 
+	/**
+	 * Test getTapOns method
+	 */
 	@Test
 	void getTapOnsTest() {
 		// There are 3 ON taps in input data
@@ -59,6 +62,9 @@ public class TripGeneratorServiceTest {
 		assertEquals(3, tapOnList.size());
 	}
 
+	/**
+	 * Test getTapOff method
+	 */
 	@Test
 	void getTapOffTest() {
 		// Tap Id 2 is the corresponding OFF tap of Tap Id 1
@@ -72,6 +78,11 @@ public class TripGeneratorServiceTest {
 		assertEquals(5, tapOff.getId());
 	}
 
+	/**
+	 * Test getTripDuration method
+	 * 
+	 * @throws TripGenerationException
+	 */
 	@Test
 	void getTripDurationTest() throws TripGenerationException {
 		// Duration between Tap Id's 1 and 2 is 300 seconds
@@ -83,6 +94,11 @@ public class TripGeneratorServiceTest {
 		assertEquals(270, duration);
 	}
 
+	/**
+	 * Test getTripFare method for all possible combinations
+	 * 
+	 * @throws TripGenerationException
+	 */
 	@Test
 	void getTripFareTest() throws TripGenerationException {
 		// Max cost for trip from Stop1 is $7.30
@@ -114,6 +130,11 @@ public class TripGeneratorServiceTest {
 		assertEquals(5.50, tripFare);
 	}
 
+	/**
+	 * Test getTripStatus method for possible combinations
+	 * 
+	 * @throws TripGenerationException
+	 */
 	@Test
 	void getTripStatusTest() throws TripGenerationException {
 		// Trip status is INCOMPLETE when there is no OFF tap
