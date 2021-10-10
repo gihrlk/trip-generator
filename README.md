@@ -18,7 +18,7 @@ You need Java 1.8+ to run the application.
 
 Download or clone the project from GitHub repo and navigate to the project's root directory.
 
-Project is created with SpringBoot Maven wrapper. To use the wrapper, you need JAVA_HOME system variable. If you already have Maven installed then, you can use it.
+Project is created with SpringBoot Maven wrapper. To use the wrapper, you need JAVA_HOME system variable. If you already have Apache Maven installed then, you can use it.
 
 To execute the test cases using the Maven wrapper, run
 ##### mvnw test
@@ -32,6 +32,8 @@ To run the application jar file, you need to provide two arguments.<br>
 Argument 1: Path to the input JSON file<br>
 Argument 2: Path to save the output JSON file
 ##### java -jar target\trip-generator-project-0.0.1-SNAPSHOT.jar src\main\resources\tests\input\tap-data-1.json src\main\resources\tests\output\trip-data-1.json
+
+Generated trips data will be saved to the output file path specified above.
 
 ### Test data
 The Application has been tested with sample input files shared in src/main/resources/tests/input/ directory.
