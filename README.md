@@ -2,12 +2,12 @@
 Trip Generator Coding Challenge for Littlepay
 
 ### Assumptions
-1. Input JSON file is well formed and is not missing data. Therefore, input tap data is not validated.
+1. Input JSON file is well formed and it is not missing data. Therefore, input tap data is not validated.
 2. There are only three bus stops. 
-3. The cost to travel between the stops are stored in TripCostStore class in both directions. i.e. From Stop1 to Stop2 and also Stop2 to Stop1. These costs should ideally retrieve from a datasource or a configuration file.
-4. Customer must always tap OFF before they could tap ON again. Input data will only have one tap ON without the tap OFF for given Primary Account Number.
-5. Customer's corresponding tap ON and tap OFF entries will always have the same CompanyId and BusId. If tap OFF entries CompanyId and BusId different from the tap ON's CompanyId and BusId, tap OFF will be ignored.
-6. CompanyId and BusId only used when finding the corresponding tap OFF entry.
+3. The cost to travel between the stops are stored in TripCostStore class in both directions. i.e. cost for Stop1 -> Stop2 and cost for Stop2 -> Stop1. These costs should ideally retrieve from a datasource or a configuration file.
+4. Customers must always tap OFF before they could tap ON again. Input data will only have one tap ON without the tap OFF for given Primary Account Number.
+5. Customer's corresponding tap ON and tap OFF entries will always have the same CompanyId and BusId. If tap OFF's CompanyId and BusId are different from the tap ON's CompanyId and BusId, the tap OFF will be ignored.
+6. CompanyId and BusId are only used when finding the corresponding tap OFF entry.
 7. Internationalization is not supported.
 
 ### How to run the application
@@ -17,23 +17,23 @@ You need Java 1.8+ to run the application.
 
 Download or clone the project from GitHub repo and navigate to the project's root directory.
 
-Project created with SpringBoot Maven wrapper. To use the wrapper you need JAVA_HOME system variable. If you already have Maven installed then you can use it.
+Project is created with SpringBoot Maven wrapper. To use the wrapper, you need JAVA_HOME system variable. If you already have Maven installed then, you can use it.
 
 To execute the test cases using the Maven wrapper, run
-##### ./mnvw test
+##### mvnw test
 
 To build the project using the Maven wrapper, run
-##### ./mnvw package
+##### mvnw package
 
-Application jar will be saved in target directory.
+The Application jar will be saved in target directory.
 
-To run the application jar file you need to provide two arguments.<br>
+To run the application jar file, you need to provide two arguments.<br>
 Argument 1: Path to the input JSON file<br>
 Argument 2: Path to save the output JSON file
 ##### java -jar target\trip-generator-project-0.0.1-SNAPSHOT.jar src\main\resources\tests\input\tap-data-1.json src\main\resources\tests\output\trip-data-1.json
 
 ### Test data
-Application has been tested with sample input files shared in src/main/resources/tests/input/ directory.
+The Application has been tested with sample input files shared in src/main/resources/tests/input/ directory.
 
 Description of each test data set is below.
 

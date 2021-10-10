@@ -35,11 +35,15 @@ public class TripGeneratorValidator {
 
 		// Validate output file
 		File outputFile = new File(outputFilePath);
-		if (outputFile.exists()) {
-			logger.debug("File {} exists. It will be overridden.", () -> outputFilePath);
+		File parentDirectory = outputFile.getParentFile();
+		if (parentDirectory == null || !parentDirectory.exists() || !parentDirectory.isDirectory()) {
+			throw new OutputFileException("Can't find the output directory. The directory must exists.");
 		}
 		if (!inputFile.isFile() || !isJsonFile(outputFilePath)) {
-			throw new OutputFileException("Output file is must have the json extention.");
+			throw new OutputFileException("Output file must have the json extention.");
+		}
+		if (outputFile.exists()) {
+			logger.warn("File {} exists. It will be overridden.", () -> outputFilePath);
 		}
 	}
 
