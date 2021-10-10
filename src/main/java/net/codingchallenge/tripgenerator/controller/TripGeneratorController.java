@@ -72,11 +72,11 @@ public class TripGeneratorController {
 				logger.debug("No taps were found in input data. Please check the input data.");
 			}
 		} catch (TripGenerationException e) {
-			logger.error("Error occured while generating trips from tap data.", e);
+			logger.error("Error occured while generating trips from tap data. {}", () -> e.getMessage());
 		} catch (InputFileException e) {
-			logger.error("Error occured while reading the tap data.", e);
+			logger.error("Error occured while reading the tap data. {}", () -> e.getMessage());
 		} catch (OutputFileException e) {
-			logger.error("Error occured while saving trip data.", e);
+			logger.error("Error occured while saving trip data. {}", () -> e.getMessage());
 		}
 	}
 

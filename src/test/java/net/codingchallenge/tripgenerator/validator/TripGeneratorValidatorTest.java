@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
 import net.codingchallenge.tripgenerator.exception.InputFileException;
+import net.codingchallenge.tripgenerator.exception.OutputFileException;
 
 /**
  * The TripGeneratorValidatorTest performs unit tests on validation methods.
@@ -24,7 +25,7 @@ public class TripGeneratorValidatorTest {
 	private TripGeneratorValidator tripGeneratorValidator;
 
 	@Test
-	void validateFilePathsTest1() throws InputFileException {
+	void validateFilePathsTest1() throws InputFileException, OutputFileException {
 		tripGeneratorValidator.validateFilePaths("src/main/resources/tests/input/tap-data-1.json",
 				"src/main/resources/tests/output/trip-data-1.json");
 	}
@@ -38,7 +39,7 @@ public class TripGeneratorValidatorTest {
 
 		assertTrue(thrownException.getMessage().contains("Can't find the input file."));
 	}
-	
+
 	@Test
 	void validateFilePathsTest3() {
 		InputFileException thrownException = assertThrows(InputFileException.class,
@@ -51,13 +52,12 @@ public class TripGeneratorValidatorTest {
 
 	@Test
 	void validateFilePathsTest4() {
-		InputFileException thrownException = assertThrows(InputFileException.class,
+		OutputFileException thrownException = assertThrows(OutputFileException.class,
 				() -> tripGeneratorValidator.validateFilePaths("src/main/resources/tests/input/tap-data-1.json",
 						"src/main/resources/tests/output/trip-data-1"),
 				"Expected to get an exception, but it didn't");
 
-		assertTrue(thrownException.getMessage().contains("Output file is not a JSON file."));
+		assertTrue(thrownException.getMessage().contains("Output file is must have the json extention."));
 	}
-	
-	
+
 }

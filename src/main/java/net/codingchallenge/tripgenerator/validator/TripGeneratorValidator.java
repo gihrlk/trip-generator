@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
 
 import net.codingchallenge.tripgenerator.exception.InputFileException;
+import net.codingchallenge.tripgenerator.exception.OutputFileException;
 
 /**
  * The TripGeneratorValidator class performs basic validations.
@@ -22,7 +23,7 @@ public class TripGeneratorValidator {
 
 	final static String FILE_EXTENTION = "json";
 
-	public void validateFilePaths(String inputFilePath, String outputFilePath) throws InputFileException {
+	public void validateFilePaths(String inputFilePath, String outputFilePath) throws InputFileException, OutputFileException {
 
 		// Validate input file
 		File inputFile = new File(inputFilePath);
@@ -35,10 +36,10 @@ public class TripGeneratorValidator {
 		// Validate output file
 		File outputFile = new File(outputFilePath);
 		if (outputFile.exists()) {
-			logger.debug("File {} exists. It will be overriden.", () -> outputFilePath);
+			logger.debug("File {} exists. It will be overridden.", () -> outputFilePath);
 		}
 		if (!inputFile.isFile() || !isJsonFile(outputFilePath)) {
-			throw new InputFileException("Output file is not a JSON file.");
+			throw new OutputFileException("Output file is must have the json extention.");
 		}
 	}
 

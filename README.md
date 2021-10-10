@@ -8,6 +8,7 @@ Trip Generator Coding Challenge for Littlepay
 4. Customer must always tap OFF before they could tap ON again. Input data will only have one tap ON without the tap OFF for given Primary Account Number.
 5. Customer's corresponding tap ON and tap OFF entries will always have the same CompanyId and BusId. If tap OFF entries CompanyId and BusId different from the tap ON's CompanyId and BusId, tap OFF will be ignored.
 6. CompanyId and BusId only used when finding the corresponding tap OFF entry.
+7. Internationalization is not supported.
 
 ### How to run the application
 Application code is available at [GitHub repository](https://github.com/gihrlk/trip-generator)
