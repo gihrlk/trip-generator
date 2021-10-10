@@ -33,5 +33,5 @@ build/
 .vscode/
 
 ### CUSTOM ###
+bin/
 logs/
-src/main/resources/tests/output/
