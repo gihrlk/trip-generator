@@ -23,6 +23,7 @@ import net.codingchallenge.tripgenerator.model.Taps;
 import net.codingchallenge.tripgenerator.model.Trip;
 import net.codingchallenge.tripgenerator.model.Trips;
 import net.codingchallenge.tripgenerator.service.TripGeneratorService;
+import net.codingchallenge.tripgenerator.validator.TripGeneratorValidator;
 
 /**
  * The TripGeneratorController class provides capability need to read input
@@ -39,6 +40,9 @@ public class TripGeneratorController {
 	@Autowired(required = true)
 	TripGeneratorService tripGeneratorService;
 
+	@Autowired(required = true)
+	TripGeneratorValidator tripGeneratorValidator;
+
 	/**
 	 * generateTripsFromTaps method reads taps data from the input file and generate
 	 * the trips output.
@@ -47,8 +51,11 @@ public class TripGeneratorController {
 	 * @param outputFilePath
 	 */
 	public void generateTripsFromTaps(String inputFilePath, String outputFilePath) {
-		logger.debug("Reading Tap data from input file: {}", () -> inputFilePath);
 		try {
+			tripGeneratorValidator.validateFilePaths(inputFilePath, outputFilePath);
+
+			logger.debug("Reading Tap data from input file: {}", () -> inputFilePath);
+
 			List<Tap> taps = readTapsFromInputFile(inputFilePath);
 			if (taps != null && !taps.isEmpty()) {
 				logger.debug("Input file contains {} taps. Processing...", () -> taps.size());
@@ -89,8 +96,7 @@ public class TripGeneratorController {
 		if (tapOnList != null && !tapOnList.isEmpty()) {
 			// Look for corresponding tap OFF for each tap ON and generate trip
 			for (Tap tapOn : tapOnList) {
-				logger.debug("Tap Id {} is a ON tap. Now looking for corresponding OFF tap.",
-						() -> tapOn.getId());
+				logger.debug("Tap Id {} is a ON tap. Now looking for corresponding OFF tap.", () -> tapOn.getId());
 				Tap tapOff = tripGeneratorService.getTapOff(taps, tapOn);
 				Trip trip = generateTripFromTap(tapOn, tapOff);
 				logger.debug("Successfully generated trip. {}", () -> trip.toString());
@@ -128,8 +134,7 @@ public class TripGeneratorController {
 			trip.setPrimaryAccountNumber(tapOn.getPrimaryAccountNumber());
 			trip.setStatus(tripGeneratorService.getTripStatus(tapOn.getStopId(), tapOff.getStopId()));
 		} else {
-			logger.debug("Tap Id {} doesn't have a OFF tap. Generating the trip with max fare...",
-					() -> tapOn.getId());
+			logger.debug("Tap Id {} doesn't have a OFF tap. Generating the trip with max fare...", () -> tapOn.getId());
 			trip.setStarted(tapOn.getDatetimeUTC());
 			trip.setFromStopId(tapOn.getStopId());
 			trip.setChargeAmount(tripGeneratorService.getTripFare(tapOn.getStopId()));

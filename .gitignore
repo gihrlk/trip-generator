@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### CUSTOM ###
+logs/
+src/main/resources/tests/output/

@@ -66,8 +66,7 @@ public class TripGeneratorServiceImpl implements TripGeneratorService {
 	@Override
 	public double getTripFare(String sourceBusStopId) throws TripGenerationException {
 		TripCost tripCost = TripCostStore.getTripCostList().stream()
-				.filter(cost -> sourceBusStopId.equals(cost.getSource())
-						|| sourceBusStopId.equals(cost.getDestination()))
+				.filter(cost -> sourceBusStopId.equals(cost.getSource()))
 				.sorted((TripCost cost1, TripCost cost2) -> Double.compare(cost2.getCost(), cost1.getCost()))
 				.findFirst().orElse(null);
 		if (tripCost == null) {
@@ -81,16 +80,19 @@ public class TripGeneratorServiceImpl implements TripGeneratorService {
 	 */
 	@Override
 	public double getTripFare(String sourceBusStopId, String destinationBusStopId) throws TripGenerationException {
-		TripCost tripCost = TripCostStore.getTripCostList().stream().filter(
-				cost -> (sourceBusStopId.equals(cost.getSource()) && destinationBusStopId.equals(cost.getDestination()))
-						|| (destinationBusStopId.equals(cost.getSource()))
-								&& sourceBusStopId.equals(cost.getDestination()))
-				.sorted((TripCost cost1, TripCost cost2) -> Double.compare(cost2.getCost(), cost1.getCost())).findAny()
-				.orElse(null);
-		if (tripCost == null) {
-			throw new TripGenerationException("Couldn't calculate the trip fare.");
+		double calcCost = 0.0;
+		if (!sourceBusStopId.equals(destinationBusStopId)) {
+			TripCost tripCost = TripCostStore.getTripCostList().stream()
+					.filter(cost -> sourceBusStopId.equals(cost.getSource())
+							&& destinationBusStopId.equals(cost.getDestination()))
+					.sorted((TripCost cost1, TripCost cost2) -> Double.compare(cost2.getCost(), cost1.getCost()))
+					.findAny().orElse(null);
+			if (tripCost == null) {
+				throw new TripGenerationException("Couldn't calculate the trip fare.");
+			}
+			calcCost = tripCost.getCost();
 		}
-		return tripCost.getCost();
+		return calcCost;
 	}
 
 	/**

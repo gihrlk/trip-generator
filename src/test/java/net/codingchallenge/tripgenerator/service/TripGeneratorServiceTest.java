@@ -61,13 +61,13 @@ public class TripGeneratorServiceTest {
 
 	@Test
 	void getTapOffTest() {
-		// Tap Id 2 is the corresponding OFF tap for Tap Id 1
+		// Tap Id 2 is the corresponding OFF tap of Tap Id 1
 		Tap tapOff = tripGeneratorService.getTapOff(taps, taps.get(0));
 		assertEquals(2, tapOff.getId());
 		// Tap Id 3 doesn't have a OFF tap entry
 		tapOff = tripGeneratorService.getTapOff(taps, taps.get(2));
 		assertNull(tapOff);
-		// Tap Id 5 is the corresponding OFF tap for Tap Id 4
+		// Tap Id 5 is the corresponding OFF tap of Tap Id 4
 		tapOff = tripGeneratorService.getTapOff(taps, taps.get(3));
 		assertEquals(5, tapOff.getId());
 	}

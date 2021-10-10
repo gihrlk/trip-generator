@@ -27,8 +27,11 @@ public class TripCostStore {
 	@PostConstruct
 	public void addCosts() {
 		tripCostList.add(new TripCost("Stop1", "Stop2", 3.25));
+		tripCostList.add(new TripCost("Stop2", "Stop1", 3.25));
 		tripCostList.add(new TripCost("Stop2", "Stop3", 5.50));
+		tripCostList.add(new TripCost("Stop3", "Stop2", 5.50));
 		tripCostList.add(new TripCost("Stop1", "Stop3", 7.30));
+		tripCostList.add(new TripCost("Stop3", "Stop1", 7.30));
 	}
 
 	public static List<TripCost> getTripCostList() {
